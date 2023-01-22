@@ -8,7 +8,7 @@ import android.os.PersistableBundle
 import android.view.LayoutInflater
 import com.example.hw2m6.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
     private val list = arrayListOf<Model>()
 
     private val listSelect = arrayListOf<Model>()
@@ -24,35 +24,44 @@ class MainActivity : AppCompatActivity(){
         setContentView(binding.root)
         loadImage()
         initView()
-        imageSend()    }
-     fun imageSend() {
-list.add(Model(R.drawable.ic_cat,true))
-list.add(Model(R.drawable.ic_elephant,true))
-list.add(Model(R.drawable.ic_elephant,true))
-list.add(Model(R.drawable.ic_elephant,true))
-list.add(Model(R.drawable.ic_elephant,true))
+        imageSend()
     }
 
- private fun initView() {
+    fun imageSend() {
+        list.add(Model(R.drawable.ic_1, true))
+        list.add(Model(R.drawable.ic_2, true))
+        list.add(Model(R.drawable.ic_1, true))
+        list.add(Model(R.drawable.ic_2, true))
+        list.add(Model(R.drawable.ic_1, true))
+        list.add(Model(R.drawable.ic_2, true))
+        list.add(Model(R.drawable.ic_1, true))
+        list.add(Model(R.drawable.ic_2, true))
+        list.add(Model(R.drawable.ic_1, true))
+        list.add(Model(R.drawable.ic_2, true))
+    }
 
-        adapter = Adapter(list,this::onClick)
+    private fun initView() {
+
+        adapter = Adapter(list, this::onClick)
         binding.recyclerview.adapter = adapter
     }
 
-   private fun onClick(imageModel:Model) {
+    private fun onClick(imageModel: Model) {
         imageModel.select = !imageModel.select
-        if (imageModel.select){
+        if (imageModel.select) {
             listSelect.add(imageModel)
-        }else{
+        } else {
             listSelect.remove(imageModel)
         }
     }
-     fun loadImage() {
-       binding.btnSend.setOnClickListener {
-           val intent = Intent(this,MainActivity2::class.java)
-           intent.putExtra("key",listSelect)
-           startActivity(intent)
-       }
+
+    fun loadImage() {
+        binding.btnSend.setOnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            intent.putExtra("key", listSelect)
+            startActivity(intent)
+        }
 
 
-}}
+    }
+}
